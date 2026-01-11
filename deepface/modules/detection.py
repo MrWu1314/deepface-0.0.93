@@ -154,6 +154,10 @@ def extract_faces(
                 "h": h,
                 "left_eye": current_region.left_eye,
                 "right_eye": current_region.right_eye,
+                "nose": current_region.nose,
+                "mouth_left": current_region.mouth_left,
+                "mouth_right": current_region.mouth_right,
+                
             },
             "confidence": round(current_region.confidence, 2),
         }
@@ -241,6 +245,11 @@ def detect_faces(
         h = facial_area.h
         left_eye = facial_area.left_eye
         right_eye = facial_area.right_eye
+
+        mouth_left = facial_area.mouth_left
+        mouth_right = facial_area.mouth_right
+        nose = facial_area.nose
+
         confidence = facial_area.confidence
 
         if expand_percentage > 0:
@@ -276,11 +285,19 @@ def detect_faces(
                 left_eye = (left_eye[0] - width_border, left_eye[1] - height_border)
             if right_eye is not None:
                 right_eye = (right_eye[0] - width_border, right_eye[1] - height_border)
+            
+            if nose is not None:
+                nose = (nose[0] - width_border, nose[1] - height_border)
+            if mouth_left is not None:
+                mouth_left = (mouth_left[0] - width_border, mouth_left[1] - height_border)
+            if mouth_right is not None:
+                mouth_right = (mouth_right[0] - width_border, mouth_right[1] - height_border)
 
         result = DetectedFace(
             img=detected_face,
             facial_area=FacialAreaRegion(
-                x=x, y=y, h=h, w=w, confidence=confidence, left_eye=left_eye, right_eye=right_eye
+                x=x, y=y, h=h, w=w, confidence=confidence, left_eye=left_eye, right_eye=right_eye, 
+                nose = nose, mouth_left = mouth_left, mouth_right = mouth_right
             ),
             confidence=confidence,
         )

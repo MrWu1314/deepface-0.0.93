@@ -34,6 +34,9 @@ class FacialAreaRegion:
     h: int
     left_eye: Tuple[int, int]
     right_eye: Tuple[int, int]
+    nose: Tuple[int, int]
+    mouth_left: Tuple[int, int]
+    mouth_right: Tuple[int, int]
     confidence: float
 
     def __init__(
@@ -44,6 +47,9 @@ class FacialAreaRegion:
         h: int,
         left_eye: Optional[Tuple[int, int]] = None,
         right_eye: Optional[Tuple[int, int]] = None,
+        nose: Optional[Tuple[int, int]] = None,
+        mouth_left: Optional[Tuple[int, int]] = None,
+        mouth_right: Optional[Tuple[int, int]] = None,
         confidence: Optional[float] = None,
     ):
         """
@@ -67,6 +73,9 @@ class FacialAreaRegion:
         self.h = h
         self.left_eye = left_eye
         self.right_eye = right_eye
+        self.nose = nose
+        self.mouth_left = mouth_left
+        self.mouth_right = mouth_right
         self.confidence = confidence
 
 
